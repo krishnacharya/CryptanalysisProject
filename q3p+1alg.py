@@ -1,6 +1,6 @@
 import sys
 from sage.all import *
-
+import time
 def get_product(budget, prime_bound):
 	'''
 		Computes X = product of primes^floor(log budget/ log prime)
@@ -15,7 +15,8 @@ def get_product(budget, prime_bound):
 
 def multiply(tri1,tri2):
 	'''
-		Multiplication of two group elements
+		Multiplication of two group elements in G_d(N)
+		Follows the rule (a1,b1) (a2,b2) = (a1a2 + db1b2, a1b2+a2b1)
 	'''
 	d = tri1[0]
 	a1 = tri1[1]
@@ -26,7 +27,9 @@ def multiply(tri1,tri2):
 
 def get_random_Gd(N):
 	'''
-		Get random group element
+		Get random group element, First choose 'a' and 'b' randomly such that
+		b has an inverse mod N, so that 'd' = (a**2 - 1) / b**2  (mod N) can be
+		calculated.
 	'''
 	r = Integers(N)
 	a = r.random_element()
@@ -39,7 +42,7 @@ def get_random_Gd(N):
 
 def brute_mult(X,tri):
 	'''
-		Brute force multiplication for X * alpha
+		Brute force multiplication for X * alpha, not recommneded
 	'''
 	gen_prod = (tri[0],1,0)
 	for i in range(X):
@@ -48,7 +51,7 @@ def brute_mult(X,tri):
 
 def sq_mult(X, tri):
 	'''
-		square and multiply alg for X * alpha
+		square and multiply algorithm for computing X * alpha
 	'''
 	binarr = X.digits(2)
 	d = tri[0]
@@ -64,7 +67,7 @@ def sq_mult(X, tri):
 			gen_prod = multiply(temp_sq, gen_prod)
 	return gen_prod
 
-def main(budget, prime_bound, N):
+def pplusone_alg(budget, prime_bound, N):
 	'''
 		repeat till we get non trivial factor of N
 	'''
@@ -78,16 +81,22 @@ def main(budget, prime_bound, N):
 			print "A non trivial factor is:", g
 			break
 
-#Ex1
-# Pt = Primes()
-# pb = Pt.unrank(1000)
-# bg = 40000000000
-# budget = prime_bound = 2100
-# N = 95853544864250299111409
+def main():
+	#Ex1
+	# Pt = Primes()
+	# pb = Pt.unrank(1000)
+	# bg = 40000000000
+	# budget = prime_bound = 2100
+	# N = 95853544864250299111409
 
-# #Ex2
-N = 746482824012238308661619491135773503333385064366762059957618554835738449567418578817253229
-Pt = Primes()
-prime_bound = Pt.unrank(1000)
-budget = 40000000000
-main(budget, prime_bound, N)
+	#Ex2
+	N = 746482824012238308661619491135773503333385064366762059957618554835738449567418578817253229
+	Pt = Primes()
+	prime_bound = Pt.unrank(1000)
+	budget = 40000000000
+	start_time = time.time()
+	pplusone_alg(budget, prime_bound, N)
+	print "Running time: " + str(time.time() - start_time) + "s"
+
+if __name__ == "__main__":
+    main()

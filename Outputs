@@ -1,0 +1,73 @@
+Note: Running times are for single runs and since most algorithms here are randomized it is just to get a sense of the order of magnitude.
+      All examples run with sage, which uses python2
+      All algorithms were processor intensive, Hardware used: i7 
+
+Q1) Pollards rho factoring
+
+	N = 60331193824455101058028269521753
+	sage q1polro.py 
+	A non trivial facor is, 98124511952333
+	Running time: 63.3637120724s
+
+
+	N = 276474933387964773460419532857385928669681
+	sage q1polro.py 
+	A non trivial facor is, 610949486363641
+	Running time: 234.232500076s
+
+Q2) Pohlig Hellman DLog
+
+	p = 13827821670227353601, g = 3, h = 10780909174164501009
+
+	sage q2polhel.py 
+	The dlog is 2569795586067948707
+	Running time: 0.00204396247864s
+	
+Q3) p+1 algorithm
+	
+	budget = prime_bound = 2100
+	N = 95853544864250299111409
+	sage q3p+1alg.py 
+	A non trivial factor is: 87178291199
+	Running time: 0.0505368709564s
+	
+
+	N = 746482824012238308661619491135773503333385064366762059957618554835738449567418578817253229
+	budget = 40000000000
+	prime_bound = Pt.unrank(1000) #1001th prime number
+	sage q3p+1alg.py 
+	A non trivial factor is: 523022617466601111760007224100074291199999999
+	Running time: 0.462672948837s
+
+
+Q4) Dixon alg for factoring
+
+	N = 8591966237
+	sage q4dixon.py 
+	(131101, 65537)
+	Runnning time: 3.56259512901s
+
+	N = 2251802665812493
+	sage q4dixon.py 
+	(67108879, 33554467)
+	Runnning time: 85.7448179722s
+
+	N = 73786976659910426999
+	sage q4dixon.py 
+	(4294967311, 17179869209)
+	Running time: 1228.11645293s
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
