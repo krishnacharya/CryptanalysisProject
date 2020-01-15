@@ -1,6 +1,6 @@
 Note: Running times are for single runs and since most algorithms here are randomized it is just to get a sense of the order of magnitude.
       All examples run with sage, which uses python2
-      All algorithms were processor intensive, Hardware used: i7 
+      All algorithms were processor intensive, Hardware used: Intel i7 2.8GHz
 
 Q1) Pollards rho factoring
 
